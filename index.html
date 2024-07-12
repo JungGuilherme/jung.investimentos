@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.min.js"></script>
+    <style>
+        #pdf-viewer {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>PDF Viewer</h1>
+    <div id="pdf-viewer"></div>
+
+    <script>
+        var url = 'caminho/para/seu.pdf'; // Substitua pelo caminho do seu arquivo PDF
+
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
+
+        var loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.promise.then(function(pdf) {
+            console.log('PDF loaded');
+
+            var pageNumber = 1;
+            pdf.getPage(pageNumber).then(function(page) {
+                console.log('Page loaded');
+
+                var scale = 1.5;
+                var viewport = page.getViewport({ scale: scale });
+
+                var canvas = document.createElement('canvas');
+                var context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                document.getElementById('pdf-viewer').appendChild(canvas);
+
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.promise.then(function () {
+                    console.log('Page rendered');
+                });
+            });
+        }, function (reason) {
+            console.error(reason);
+        });
+    </script>
+</body>
+</html>
