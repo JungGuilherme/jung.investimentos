@@ -13,6 +13,7 @@
             <div id="file-list"></div>
         </div>
         <div id="pdf-viewer">
+            <div id="loading-indicator" style="display: none;">Loading...</div>
             <canvas id="pdf-canvas"></canvas>
         </div>
     </div>
@@ -49,6 +50,7 @@
 
         // Função para carregar e renderizar o PDF
         function loadPDF(url) {
+            showLoading(true);
             var pdfjsLib = window['pdfjs-dist/build/pdf'];
             pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
 
@@ -78,11 +80,19 @@
                     var renderTask = page.render(renderContext);
                     renderTask.promise.then(function () {
                         console.log('Page rendered');
+                        showLoading(false);
                     });
                 });
             }, function (reason) {
                 console.error(reason);
+                showLoading(false);
             });
+        }
+
+        // Função para mostrar ou esconder o indicador de carregamento
+        function showLoading(isLoading) {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            loadingIndicator.style.display = isLoading ? 'block' : 'none';
         }
 
         // Carregar a lista de PDFs ao carregar a página
