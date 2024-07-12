@@ -7,11 +7,18 @@
 </head>
 <body>
     <div id="container">
-        <div id="file-list"></div>
-        <div id="pdf-viewer"></div>
+        <div id="file-list-container">
+            <button id="toggle-menu">Menu</button>
+            <div id="file-list"></div>
+        </div>
+        <div id="pdf-viewer">
+            <canvas id="pdf-canvas"></canvas>
+        </div>
     </div>
 
     <script>
+        let scale = 1;  // Set the scale to 1 to fit the width of the container
+
         // Função para carregar a lista de PDFs do JSON
         function loadPDFList() {
             fetch('pdfs.json')
@@ -40,15 +47,15 @@
                 pdf.getPage(1).then(function(page) {
                     console.log('Page loaded');
 
-                    var scale = 1.5;
                     var viewport = page.getViewport({ scale: scale });
 
-                    var canvas = document.createElement('canvas');
+                    var canvas = document.getElementById('pdf-canvas');
                     var context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
 
                     var pdfViewer = document.getElementById('pdf-viewer');
+                    pdfViewer.scrollTop = 0;  // Start from the top
                     pdfViewer.innerHTML = '';
                     pdfViewer.appendChild(canvas);
 
@@ -68,6 +75,12 @@
 
         // Carregar a lista de PDFs ao carregar a página
         document.addEventListener('DOMContentLoaded', loadPDFList);
+
+        // Menu toggle para dispositivos móveis
+        document.getElementById('toggle-menu').addEventListener('click', () => {
+            const fileListContainer = document.getElementById('file-list-container');
+            fileListContainer.classList.toggle('show-menu');
+        });
     </script>
 </body>
 </html>
