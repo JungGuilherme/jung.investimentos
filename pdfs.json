@@ -1,16 +1,16 @@
 [
-    {
-        "folder": "cartas_mensais",
-        "files": [
-            "arquivos/cartas_mensais/Renda Variável - JUL-24.pdf.pdf",
-            "arquivos/cartas_mensais/Renda Variável - JUL-24.pdf.pdf"
-        ]
-    },
-    {
-        "folder": "gastronomia",
-        "files": [
-            "arquivos/gastronomia/Renda Variável - JUL-24.pdf.pdf",
-            "arquivos/gastronomia/Renda Variável - JUL-24.pdf.pdf"
-        ]
-    }
+  {
+    "folder": "cartas_mensais",
+    "files": [
+      "arquivos/cartas_mensais/Renda Variável - JUL-24.pdf",
+      "arquivos/cartas_mensais/Renda Variável - JUL-24.pdf"
+    ]
+  },
+  {
+    "folder": "gastronomia",
+    "files": [
+      "arquivos/gastronomia/Renda Variável - JUL-24.pdf",
+      "arquivos/gastronomia/Renda Variável - JUL-24.pdf"
+    ]
+  }
 ]
