@@ -18,12 +18,35 @@ header {
     height: 100%;
 }
 
-#file-list {
+#file-list-container {
     background-color: #f4f4f4;
     padding: 20px;
     width: 250px;
     overflow-y: auto;
     border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+}
+
+#file-list-container.show-menu {
+    display: block;
+}
+
+#toggle-menu {
+    display: none;
+    margin-bottom: 10px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 5px;
+}
+
+#file-list {
+    flex: 1;
+    overflow-y: auto;
 }
 
 #file-list button {
@@ -47,8 +70,8 @@ header {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-    overflow: auto;
+    align-items: flex-start; /* Align items to the top */
+    overflow-y: auto;  /* Enable vertical scrolling */
     padding: 20px;
 }
 
@@ -56,5 +79,29 @@ canvas {
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     max-width: 100%;
-    max-height: 100%;
+}
+
+@media (max-width: 768px) {
+    #container {
+        flex-direction: column;
+    }
+
+    #file-list-container {
+        width: 100%;
+        padding: 10px;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    #toggle-menu {
+        display: block;
+    }
+
+    #file-list-container.show-menu #file-list {
+        display: block;
+    }
+
+    #file-list {
+        display: none;
+    }
 }
