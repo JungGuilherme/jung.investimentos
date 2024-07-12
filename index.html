@@ -7,11 +7,22 @@
 </head>
 <body>
     <div id="container">
-        <div id="file-list"></div>
-        <div id="pdf-viewer"></div>
+        <div id="file-list-container">
+            <button id="toggle-menu">Menu</button>
+            <div id="file-list"></div>
+        </div>
+        <div id="pdf-viewer">
+            <div id="zoom-controls">
+                <button id="zoom-in">Zoom In</button>
+                <button id="zoom-out">Zoom Out</button>
+            </div>
+            <canvas id="pdf-canvas"></canvas>
+        </div>
     </div>
 
     <script>
+        let scale = 1.5;
+
         // Função para carregar a lista de PDFs do JSON
         function loadPDFList() {
             fetch('pdfs.json')
@@ -40,10 +51,9 @@
                 pdf.getPage(1).then(function(page) {
                     console.log('Page loaded');
 
-                    var scale = 1.5;
                     var viewport = page.getViewport({ scale: scale });
 
-                    var canvas = document.createElement('canvas');
+                    var canvas = document.getElementById('pdf-canvas');
                     var context = canvas.getContext('2d');
                     canvas.height = viewport.height;
                     canvas.width = viewport.width;
@@ -66,8 +76,28 @@
             });
         }
 
+        // Função para controlar o zoom
+        function zoomPDF(increase) {
+            scale += increase ? 0.1 : -0.1;
+            if (scale < 0.5) scale = 0.5;
+            if (scale > 3.0) scale = 3.0;
+            const pdfCanvas = document.getElementById('pdf-canvas');
+            if (pdfCanvas) {
+                loadPDF(pdfCanvas.dataset.url);
+            }
+        }
+
+        document.getElementById('zoom-in').addEventListener('click', () => zoomPDF(true));
+        document.getElementById('zoom-out').addEventListener('click', () => zoomPDF(false));
+
         // Carregar a lista de PDFs ao carregar a página
         document.addEventListener('DOMContentLoaded', loadPDFList);
+
+        // Menu toggle para dispositivos móveis
+        document.getElementById('toggle-menu').addEventListener('click', () => {
+            const fileListContainer = document.getElementById('file-list-container');
+            fileListContainer.classList.toggle('show-menu');
+        });
     </script>
 </body>
 </html>
