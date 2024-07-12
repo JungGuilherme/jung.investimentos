@@ -44,12 +44,13 @@ header {
     border-radius: 5px;
 }
 
-#file-list {
+#folder-list, #file-list {
     flex: 1;
     overflow-y: auto;
+    margin-bottom: 10px;
 }
 
-#file-list button {
+#folder-list button, #file-list button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -62,7 +63,7 @@ header {
     border-radius: 5px;
 }
 
-#file-list button:hover {
+#folder-list button:hover, #file-list button:hover {
     background-color: #0059b3;
 }
 
