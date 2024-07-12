@@ -1,5 +1,16 @@
 [
-    "arquivos/Renda Variável - JUL-24.pdf",
-    "arquivos/arquivo2.pdf",
-    "arquivos/arquivo3.pdf"
+    {
+        "folder": "Cartas Mensais",
+        "files": [
+            "arquivos/cartas_mensais/Renda Variável - JUL-24.pdf.pdf",
+            "arquivos/cartas_mensais/Renda Variável - JUL-24.pdf.pdf"
+        ]
+    },
+    {
+        "folder": "Gastronomia",
+        "files": [
+            "arquivos/gastronomia/Renda Variável - JUL-24.pdf.pdf",
+            "arquivos/gastronomia/Renda Variável - JUL-24.pdf.pdf"
+        ]
+    }
 ]
