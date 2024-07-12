@@ -18,35 +18,12 @@ header {
     height: 100%;
 }
 
-#file-list-container {
+#file-list {
     background-color: #f4f4f4;
     padding: 20px;
     width: 250px;
     overflow-y: auto;
     border-right: 1px solid #ccc;
-    display: flex;
-    flex-direction: column;
-}
-
-#file-list-container.show-menu {
-    display: block;
-}
-
-#toggle-menu {
-    display: none;
-    margin-bottom: 10px;
-    background-color: #004080;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 5px;
-}
-
-#file-list {
-    flex: 1;
-    overflow-y: auto;
 }
 
 #file-list button {
@@ -69,34 +46,10 @@ header {
 #pdf-viewer {
     flex: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: auto;
     padding: 20px;
-    position: relative;
-}
-
-#zoom-controls {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    gap: 10px;
-}
-
-#zoom-controls button {
-    background-color: #004080;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 5px;
-}
-
-#zoom-controls button:hover {
-    background-color: #0059b3;
 }
 
 canvas {
@@ -104,29 +57,4 @@ canvas {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     max-width: 100%;
     max-height: 100%;
-}
-
-@media (max-width: 768px) {
-    #container {
-        flex-direction: column;
-    }
-
-    #file-list-container {
-        width: 100%;
-        padding: 10px;
-        border-right: none;
-        border-bottom: 1px solid #ccc;
-    }
-
-    #toggle-menu {
-        display: block;
-    }
-
-    #file-list-container.show-menu #file-list {
-        display: block;
-    }
-
-    #file-list {
-        display: none;
-    }
 }
